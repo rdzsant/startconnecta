@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgilizAI</title>
+    
+    <link rel="stylesheet" href="css/estilo.css">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+<div id="login">
+    <div class="login-box">
+        <img src="img/logo.png" class="login-logo" alt="Logo">
+        <h2 class="login-title">Login</h2>
+
+        <div class="login-form">
+            <div class="campo">
+                <label for="user">Usuário</label>
+                <input type="email" id="user" placeholder="Digite seu email">
+            </div>
+
+            <div class="campo">
+                <label for="pass">Senha</label>
+                <input type="password" id="pass" placeholder="Digite sua senha">
+            </div>
+
+            <p id="erroLogin" class="erro-login"></p>
+
+            <button class="login-btn" onclick="login()">Entrar</button>
+        </div>
+    </div>
+</div>
+
+<div id="dashboard" style="display:none">
+
+    <div class="sidebar">
+        <img src="img/logo.png" class="logo" alt="Logo">
+
+        <ul>
+            <li onclick="mostrar('home')">⭗ Dashboard</li>
+            <li onclick="mostrar('estoque')">⭗ Estoque</li>
+            <li onclick="mostrar('gastos')">⭗ Gastos</li>
+            <li onclick="mostrar('calculos')">⭗ Cálculos</li>
+            <li onclick="mostrar('historico')">⭗ Histórico</li>
+        </ul>
+    </div>
+
+    <div class="main">
+
+        <section id="home" class="pagina ativa">
+
+<h2>Resumo Geral</h2>
+
+<div class="cards">
+
+<div class="card receita">
+<h3>Receita Total</h3>
+<h2 id="receitaCard">R$ 0,00</h2>
+<p class="card-info">Total faturado</p>
+</div>
+
+<div class="card gastos">
+<h3>Gastos Totais</h3>
+<h2 id="gastosCard">R$ 0,00</h2>
+<p class="card-info">Despesas registradas</p>
+</div>
+
+<div class="card lucro">
+<h3>Lucro</h3>
+<h2 id="lucroCard">R$ 0,00</h2>
+<p class="card-info">Resultado final</p>
+</div>
+
+<div class="card estoque">
+<h3>Estoque</h3>
+<h2 id="estoqueCard">0</h2>
+<p class="card-info">Itens disponíveis</p>
+</div>
+
+</div>
+
+<div class="grafico-container">
+<canvas id="graficoFinanceiro"></canvas>
+</div>
+
+</section>
+
+        <section id="estoque" class="pagina">
+            <h2>Controle de Estoque</h2>
+
+            <div class="card">
+                <label>Quantidade em Estoque:</label><br><br>
+
+                <input class="input-pequeno" type="text" id="campoEstoque" placeholder="0,00">
+
+                <button class="btn-registro" onclick="registrarEstoque()">
+                    Registrar Estoque
+                </button>
+            </div>
+        </section>
+
+        <section id="gastos" class="pagina">
+            <h2>Controle de Gastos</h2>
+
+            <div class="card">
+                <label>Valor do Gasto Individual:</label><br><br>
+
+                <input class="input-pequeno" type="text" id="campoGasto" placeholder="R$ 0,00">
+
+                <button class="btn-registro" onclick="registrarGasto()">
+                    Registrar Gasto
+                </button>
+            </div>
+        </section>
+
+        <section id="calculos" class="pagina">
+            <h2>Calculadora de Lucro</h2>
+
+            <div class="card">
+                <div class="login-form">
+
+                    <div class="campo">
+                        <label>Receita Total (R$)</label>
+                        <input type="text" id="receita" placeholder="0,00">
+                    </div>
+
+                    <div class="campo">
+                        <label>Gastos Totais (R$)</label>
+                        <input type="text" id="gastosCalc" placeholder="0,00">
+                    </div>
+
+                    <button class="btn-registro" onclick="calcular()">
+                        Calcular e Salvar
+                    </button>
+
+                    <div class="result" id="resultado"></div>
+
+                </div>
+            </div>
+        </section>
+
+        <section id="historico" class="pagina">
+
+            <div class="historico-container">
+
+                <div class="historico-topo">
+                    <h2>Histórico de Atividades</h2>
+
+                    <button class="btn-limpar" onclick="abrirModal()">
+                        🗑 Limpar tudo
+                    </button>
+                </div>
+
+                <ul id="listaHistorico"></ul>
+
+            </div>
+
+        </section>
+
+    </div>
+
+</div>
+
+<div id="modalLimpar" class="modal-limpar">
+
+    <div class="modal-box">
+        <h3>Confirmar Exclusão</h3>
+
+        <p style="margin:20px 0;">
+            Isso apagará todos os dados salvos permanentemente.
+        </p>
+
+        <div class="modal-botoes">
+
+            <button class="btn-limpar" onclick="confirmarLimpeza()">
+                Sim, apagar
+            </button>
+
+            <button class="login-btn" style="background:#4b5563" onclick="fecharModal()">
+                Cancelar
+            </button>
+
+        </div>
+    </div>
+
+</div>
+
+<script src="js/script.js"></script>
+
+</body>
+</html>
